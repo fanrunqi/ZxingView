@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="ZxingView">
+        <attr name="useDefaultViewfinder" format="boolean" />
+        <attr name = "defaultViewFinderColor" format = "string"/>
+        <attr name="recognizeRectWidthInDp" format="integer" />
+        <attr name="recognizeRectHeightInDp" format="integer" />
+    </declare-styleable>
+</resources>
