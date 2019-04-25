@@ -1,11 +1,14 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.fanrunqi'
+
 android {
     compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion 14
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -22,15 +25,6 @@ android {
 
 }
 
-task makeJar(type:Copy){
-    delete 'build/libs/ZxingView_1.0.1.jar'
-    from('build/intermediates/packaged-classes/debug/')
-    into('build/libs/')
-    include('classes.jar')
-    rename('classes.jar','ZxingView_1.0.1.jar')
-}
-makeJar.dependsOn(build)
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,4 +35,16 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.google.zxing:core:3.3.3'
+}
+
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+    }
 }
