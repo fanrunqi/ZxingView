@@ -1,1 +1,1 @@
-include ':app', ':ZxingAndroid'
+include ':app', ':ZxingViewLib'
