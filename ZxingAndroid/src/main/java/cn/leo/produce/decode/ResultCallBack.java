@@ -1,7 +1,7 @@
 package cn.leo.produce.decode;
 
 /**
- * @description:
+ * @description: zxing view result back
  * @author: fanrunqi
  * @date: 2019/4/16 15:50
  */

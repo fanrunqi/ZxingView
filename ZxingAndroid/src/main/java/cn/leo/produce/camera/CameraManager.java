@@ -4,15 +4,11 @@ import android.app.Activity;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.hardware.Camera;
-import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
-
 import java.util.List;
-
-import cn.leo.produce.config.ZVParams;
+import cn.leo.produce.config.ZvParams;
 import cn.leo.produce.decode.DecoderManager;
-import cn.leo.produce.decode.DecoderNextCallBack;
 import cn.leo.produce.decode.SourceData;
 
 /**
@@ -111,10 +107,10 @@ public class CameraManager implements Camera.PreviewCallback {
         float dy = (viewSize.height - scaledHeight) / 2;
         matrix.postTranslate(dx, dy);
 
-        int left = (int) ((videoWidth - ZVParams.recognizeRectWidthInPx) / 2f);
-        int top = (int) ((videoHeight - ZVParams.recognizeRectHeightInPx) / 2f);
-        int right = left + ZVParams.recognizeRectWidthInPx;
-        int bottom = top + ZVParams.recognizeRectHeightInPx;
+        int left = (int) ((videoWidth - ZvParams.recognizeRectWidthInPx) / 2f);
+        int top = (int) ((videoHeight - ZvParams.recognizeRectHeightInPx) / 2f);
+        int right = left + ZvParams.recognizeRectWidthInPx;
+        int bottom = top + ZvParams.recognizeRectHeightInPx;
         identifyRect = new Rect(left, top, right, bottom);
 
         return matrix;
@@ -203,16 +199,10 @@ public class CameraManager implements Camera.PreviewCallback {
                 format,
                 degrees);
 
-        DecoderManager.getInstance().decode(source,
-                identifyRect,
-                new DecoderNextCallBack() {
-                    @Override
-                    public void requestNextFrame() {
-                        if (!isPause) {
-                            shotNextFrame();
-                        }
-                    }
-                });
+        if (!isPause) {
+            DecoderManager.getInstance().decode(source, identifyRect);
+            shotNextFrame();
+        }
     }
 
     private void shotNextFrame() {

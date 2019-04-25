@@ -11,7 +11,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * @description:
+ * @author: fanrunqi
+ * @date: 2019/4/23 15:26
+ */
 public class DecoderBuild {
     private Collection<BarcodeFormat> decodeFormats;
     private Map<DecodeHintType, ?> hints;

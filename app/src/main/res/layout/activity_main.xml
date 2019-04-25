@@ -14,8 +14,9 @@
 
         app:recognizeRectWidthInDp="270"
         app:recognizeRectHeightInDp="270"
-        app:defaultViewFinderColor="#0693ff"
-        app:useDefaultViewfinder="true"
+        app:useDefaultInteractiveView="true"
+        app:defaultViewFinderColor="#118eea"
+        app:defaultViewFinderMaskColor="#a0000000"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

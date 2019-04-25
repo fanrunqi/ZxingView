@@ -1,13 +1,9 @@
 package cn.leo.produce;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
-import android.util.Log;
 import android.view.TextureView;
 import android.widget.FrameLayout;
-
 import cn.leo.produce.camera.CameraManager;
 import cn.leo.produce.camera.ViewSize;
 import cn.leo.produce.config.Utils;
