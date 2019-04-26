@@ -12,19 +12,20 @@ public class ZvParams {
 
     public static ResultCallBack resultCallBack;
     public static boolean useDefaultInteractiveView;
-    public static int ViewFinderColor;
-    public static int ViewFinderMaskColor;
-    public static int defaultRecognizeRectWidthInDp;
-    public static int defaultRecognizeRectHeightInDp;
+    public static int InteractiveViewColor;
+    public static int InteractiveViewMaskColor;
+    public static int RecognizeRectWidthInDp;
+    public static int RecognizeRectHeightInDp;
+
     public static int recognizeRectWidthInPx;
     public static int recognizeRectHeightInPx;
 
     static {
         useDefaultInteractiveView = true;
-        defaultRecognizeRectWidthInDp = 300;
-        defaultRecognizeRectHeightInDp = 300;
-        ViewFinderColor = Color.parseColor("#118eea");
-        ViewFinderMaskColor = Color.parseColor("#a0000000");
+        RecognizeRectWidthInDp = 300;
+        RecognizeRectHeightInDp = 300;
+        InteractiveViewColor = Color.parseColor("#118eea");
+        InteractiveViewMaskColor = Color.parseColor("#a0000000");
     }
 
 }

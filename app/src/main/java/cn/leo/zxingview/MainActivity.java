@@ -9,21 +9,20 @@ import cn.leo.produce.decode.ResultCallBack;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "ZxingViewResult:";
-    ZxingView zxingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        zxingView = findViewById(R.id.zxingView);
+        ZxingView zxingView = findViewById(R.id.zxingView);
         zxingView.bind(this)
-                .subscribe(new ResultCallBack() {
-                    @Override
-                    public void onResult(String result) {
-                        Log.i(TAG, "onResult:" + result);
-                    }
-                });
+            .subscribe(new ResultCallBack() {
+                @Override
+                public void onResult(String result) {
+                    Log.i(TAG, "onResult:" + result);
+                }
+            });
 
     }
 }

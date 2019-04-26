@@ -48,23 +48,24 @@ public class ZxingView extends FrameLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ZxingView);
-        String ViewFinderColor = ta.getString(R.styleable.ZxingView_defaultViewFinderColor);
-        if (!"".equals(ViewFinderColor) && ViewFinderColor != null) {
-            ZvParams.ViewFinderColor = Color.parseColor(ViewFinderColor);
+        String interactiveViewColor = ta.getString(R.styleable.ZxingView_interactiveViewColor);
+        if (!"".equals(interactiveViewColor) && interactiveViewColor != null) {
+            ZvParams.InteractiveViewColor = Color.parseColor(interactiveViewColor);
         }
 
-        String ViewFinderMaskColor = ta.getString(R.styleable.ZxingView_defaultViewFinderMaskColor);
-        if (!"".equals(ViewFinderMaskColor) && ViewFinderMaskColor != null) {
-            ZvParams.ViewFinderMaskColor = Color.parseColor(ViewFinderMaskColor);
+        String interactiveViewMaskColor = ta.getString(R.styleable.ZxingView_interactiveViewMaskColor);
+        if (!"".equals(interactiveViewMaskColor) && interactiveViewMaskColor != null) {
+            ZvParams.InteractiveViewMaskColor = Color.parseColor(interactiveViewMaskColor);
         }
 
         useDefaultInteractiveView = ZvParams.useDefaultInteractiveView = ta.getBoolean(
                 R.styleable.ZxingView_useDefaultInteractiveView,
                 ZvParams.useDefaultInteractiveView);
+
         int recognizeWidthInDp = ta.getInt(R.styleable.ZxingView_recognizeRectWidthInDp,
-                ZvParams.defaultRecognizeRectWidthInDp);
+                ZvParams.RecognizeRectWidthInDp);
         int recognizeHeightInDp = ta.getInt(R.styleable.ZxingView_recognizeRectHeightInDp,
-                ZvParams.defaultRecognizeRectHeightInDp);
+                ZvParams.RecognizeRectHeightInDp);
         ta.recycle();
 
         ZvParams.recognizeRectWidthInPx = Utils.dip2px(context, recognizeWidthInDp);

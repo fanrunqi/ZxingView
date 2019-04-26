@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <cn.leo.produce.ZxingView
         android:id="@+id/zxingView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
         app:recognizeRectWidthInDp="270"
         app:recognizeRectHeightInDp="270"
+        app:interactiveViewColor="#118eea"
+        app:interactiveViewMaskColor="#a0000000"
         app:useDefaultInteractiveView="true"
-        app:defaultViewFinderColor="#118eea"
-        app:defaultViewFinderMaskColor="#a0000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -47,7 +47,7 @@ public class InteractiveView extends View
 
     private void initialize() {
         rectPaint = new Paint();
-        rectPaint.setColor(ZvParams.ViewFinderColor);
+        rectPaint.setColor(ZvParams.InteractiveViewColor);
         rectPaint.setDither(true);
         rectPaint.setAntiAlias(true);
         rectPaint.setStyle(Paint.Style.STROKE);
@@ -55,21 +55,21 @@ public class InteractiveView extends View
 
         xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT);
         maskPaint = new Paint();
-        maskPaint.setColor(ZvParams.ViewFinderMaskColor);
+        maskPaint.setColor(ZvParams.InteractiveViewMaskColor);
         maskPaint.setAntiAlias(true);
         maskPaint.setStyle(Paint.Style.FILL);
         maskPaint.setDither(true);
         maskPaint.setFilterBitmap(true);
 
         cornerPaint = new Paint();
-        cornerPaint.setColor(ZvParams.ViewFinderColor);
+        cornerPaint.setColor(ZvParams.InteractiveViewColor);
         cornerPaint.setDither(true);
         cornerPaint.setAntiAlias(true);
         cornerPaint.setStyle(Paint.Style.STROKE);
         cornerPaint.setStrokeWidth(cornerPaintWidth);
 
         gridPaint = new Paint();
-        gridPaint.setColor(ZvParams.ViewFinderColor);
+        gridPaint.setColor(ZvParams.InteractiveViewColor);
         gridPaint.setDither(true);
         gridPaint.setAntiAlias(true);
         gridPaint.setStyle(Paint.Style.STROKE);
@@ -85,7 +85,6 @@ public class InteractiveView extends View
         setRect(w, h);
         setCornerPath();
         createGridBitMap(w);
-        Log.i("FAN", "onSizeChanged");
     }
 
     private void createGridBitMap(int w) {
@@ -166,7 +165,6 @@ public class InteractiveView extends View
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.i("FAN", "onDraw");
         canvas.drawBitmap(gridBitmap, rLeft, gridBitmapLocY, bitmapPaint);
         drawBackground(canvas);
     }
