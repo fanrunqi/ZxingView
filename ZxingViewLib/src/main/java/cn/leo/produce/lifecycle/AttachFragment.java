@@ -4,12 +4,11 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
 /**
@@ -20,12 +19,6 @@ import android.support.v4.content.ContextCompat;
 public class AttachFragment extends Fragment {
 
     private Activity activity;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestPermission();
-    }
 
     @Override
     public void onResume() {
@@ -59,11 +52,18 @@ public class AttachFragment extends Fragment {
         this.activity = activity;
         activity.getFragmentManager()
                 .beginTransaction()
-                .add(this,"AttachFragment")
+                .add(this, "AttachFragment")
                 .commit();
         return this;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (Build.VERSION.SDK_INT >= 23) {
+            requestPermission();
+        }
+    }
 
     /**
      * request camera permission
@@ -86,7 +86,7 @@ public class AttachFragment extends Fragment {
                 Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
             permissionListener.granted(AttachFragment.this);
-        } else{
+        } else {
             requestPermissions(new String[]{Manifest.permission.CAMERA},
                     cameraPermissionReqCode);
         }

@@ -37,6 +37,10 @@ public class InteractiveView extends View
     private ValueAnimator animator;
     private int bitmapH, gridBitmapLocY;
 
+    InteractiveView(Context context){
+        super(context);
+    }
+
     public InteractiveView(Context context,
                            FrameLayout parent) {
         super(context);

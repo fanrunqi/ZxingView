@@ -6,11 +6,13 @@
 
     <cn.leo.produce.ZxingView
         android:id="@+id/zxingView"
+
         app:recognizeRectWidthInDp="270"
         app:recognizeRectHeightInDp="270"
+
         app:interactiveViewColor="#118eea"
         app:interactiveViewMaskColor="#a0000000"
-        app:useDefaultInteractiveView="true"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
