@@ -1,2 +1,1 @@
-# ZxingView
-Lowest cost integration and most convenient customization
+![](https://github.com/fanrunqi/ZxingView/blob/master/pic/zxingviewpic.jpg)
