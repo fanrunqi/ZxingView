@@ -6,7 +6,9 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.view.Surface;
 import android.view.TextureView;
+
 import java.util.List;
+
 import cn.leo.produce.config.ZvParams;
 import cn.leo.produce.decode.DecoderManager;
 import cn.leo.produce.decode.SourceData;
@@ -26,6 +28,7 @@ public class CameraManager implements Camera.PreviewCallback {
     private Activity activity;
     private Rect identifyRect;
     private TextureView textureView;
+    private DecoderManager decoderManager;
     private boolean isPause;
 
     public CameraManager(Activity activity,
@@ -34,6 +37,7 @@ public class CameraManager implements Camera.PreviewCallback {
         this.activity = activity;
         this.viewSize = viewSize;
         this.textureView = textureView;
+        this.decoderManager = new DecoderManager();
         openCamera();
     }
 
@@ -200,7 +204,7 @@ public class CameraManager implements Camera.PreviewCallback {
                 degrees);
 
         if (!isPause) {
-            DecoderManager.getInstance().decode(source, identifyRect);
+            decoderManager.decode(source, identifyRect);
             shotNextFrame();
         }
     }
@@ -214,23 +218,28 @@ public class CameraManager implements Camera.PreviewCallback {
 
     public void onResume() {
         isPause = false;
-        shotNextFrame();
+        if (mCamera == null) {
+            openCamera();
+        }
+        startPreview();
     }
 
     public void onPause() {
         isPause = true;
+        if (mCamera != null) {
+            mCamera.stopPreview();
+        }
     }
 
     public void releaseCamera() {
         if (mCamera != null) {
-            mCamera.stopPreview();
             mCamera.release();
+            decoderManager.stop();
+            decoderManager = null;
             mCamera = null;
             activity = null;
+            textureView = null;
         }
     }
 
-    public void releaseDecoderThread() {
-        DecoderManager.getInstance().stop();
-    }
 }

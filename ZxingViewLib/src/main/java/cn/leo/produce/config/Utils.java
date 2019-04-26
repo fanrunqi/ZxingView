@@ -1,10 +1,18 @@
 package cn.leo.produce.config;
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import com.google.zxing.ResultPoint;
+import java.util.List;
+import cn.leo.produce.decode.BarcodeResult;
+import static cn.leo.produce.config.ZvConstant.DECODE_FAILED;
+import static cn.leo.produce.config.ZvConstant.DECODE_SUCCEEDED;
+import static cn.leo.produce.config.ZvConstant.POSSIBLE_RESULT_POINTS;
 
 /**
  * @description:
@@ -34,4 +42,28 @@ public class Utils {
         }
         return (int) (dpValue * scale + 0.5f);
     }
+
+    @SuppressWarnings("unchecked")
+    public static Handler resultHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what == DECODE_SUCCEEDED) {
+                BarcodeResult result = (BarcodeResult) msg.obj;
+                if (result != null) {
+                    if (ZvParams.resultCallBack != null) {
+                        ZvParams.resultCallBack.onResult(result.getText());
+                    }
+                }
+                return true;
+            } else if (msg.what == DECODE_FAILED) {
+                return true;
+            } else if (msg.what == POSSIBLE_RESULT_POINTS) {
+                List<ResultPoint> resultPoints = (List<ResultPoint>) msg.obj;
+                //do more
+                return true;
+            }
+            return false;
+        }
+    });
+
 }

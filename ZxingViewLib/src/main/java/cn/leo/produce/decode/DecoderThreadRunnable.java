@@ -10,10 +10,10 @@ import com.google.zxing.ResultPoint;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static cn.leo.produce.config.Utils.resultHandler;
 import static cn.leo.produce.config.ZvConstant.DECODE_FAILED;
 import static cn.leo.produce.config.ZvConstant.DECODE_SUCCEEDED;
 import static cn.leo.produce.config.ZvConstant.POSSIBLE_RESULT_POINTS;
-import static cn.leo.produce.decode.DecoderManager.resultHandler;
 
 /**
  * @description:
@@ -50,26 +50,20 @@ public class DecoderThreadRunnable implements Runnable {
 
         if (rawResult != null) {
             long end = System.currentTimeMillis();
-
-            if (resultHandler != null) {
-                BarcodeResult barcodeResult = new BarcodeResult(rawResult, sourceData);
-                Message message = Message.obtain(resultHandler, DECODE_SUCCEEDED, barcodeResult);
-                Bundle bundle = new Bundle();
-                message.setData(bundle);
-                message.sendToTarget();
-            }
+            BarcodeResult barcodeResult = new BarcodeResult(rawResult, sourceData);
+            Message message = Message.obtain(resultHandler, DECODE_SUCCEEDED, barcodeResult);
+            Bundle bundle = new Bundle();
+            message.setData(bundle);
+            message.sendToTarget();
         } else {
-            if (resultHandler != null) {
-                Message message = Message.obtain(resultHandler, DECODE_FAILED);
-                message.sendToTarget();
-            }
-        }
-
-        if (resultHandler != null) {
-            List<ResultPoint> resultPoints = decoder.getPossibleResultPoints();
-            Message message = Message.obtain(resultHandler, POSSIBLE_RESULT_POINTS);
+            Message message = Message.obtain(resultHandler, DECODE_FAILED);
             message.sendToTarget();
         }
+
+        List<ResultPoint> resultPoints = decoder.getPossibleResultPoints();
+        Message message = Message.obtain(resultHandler, POSSIBLE_RESULT_POINTS);
+        message.sendToTarget();
+
     }
 
     private Decoder createDecoder() {
@@ -80,6 +74,5 @@ public class DecoderThreadRunnable implements Runnable {
         callback.setDecoder(decoder);
         return decoder;
     }
-
 
 }

@@ -7,7 +7,8 @@ package cn.leo.produce.config;
  */
 public interface ZvConstant {
 
-      int DECODE_SUCCEEDED = 778;
-      int DECODE_FAILED = 779;
-      int POSSIBLE_RESULT_POINTS = 780;
+    int DECODE_SUCCEEDED = 778;
+    int DECODE_FAILED = 779;
+    int POSSIBLE_RESULT_POINTS = 780;
+    int SYSTEM_SLEEP_IN_MILLIS = 6000;
 }
