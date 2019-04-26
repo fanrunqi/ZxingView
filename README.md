@@ -6,7 +6,7 @@
 
 # ZxingView
   
-  This is an android scan code library base on Java ZXing Core library,
+  This is an android scan code library base on Java zxing Core library,
   
   If you want to quickly integrate Android scan code function,
   
@@ -14,7 +14,7 @@
   
   For detailed steps of integration, please click the [Instructions](https://github.com/fanrunqi/ZxingView/wiki), 
   
-  If you think this library is useful, please give me support, thank you !
+  If you think this library is useful, please give me support, thank you :+1: !
   
   
   
